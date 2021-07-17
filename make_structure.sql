@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS db;
+USE db;
+CREATE TABLE IF NOT EXISTS Products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    status VARCHAR(100),
+    quantity INT, 
+    priceId VARCHAR(100),
+    FOREIGN KEY (priceId) REFERENCES Costs (id)
+);
+
+CREATE TABLE IF NOT EXISTS Costs (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    price INT
+);
