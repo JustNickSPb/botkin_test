@@ -1,17 +1,17 @@
 version: '3.1'
 
 services:
-  # postgres:
-  #   image: postgres
-  #   environment: 
-  #     - POSTGRES_USER=${DB_USER}
-  #     - POSTGRES_PASSWORD=${DB_PASS}
-  #   volumes: 
-  #     - ./pg-data/:/var/lib/postgresql
-  #     - ./make_structure.ddl:/docker-entrypoint-initdb.d/init.sql
-  #   ports: 
-  #     - "5432:5432"
-  #   #command: --init-file /docker-entrypoint-initdb.d/init.sql
+  postgres:
+    image: postgres
+    environment: 
+      #- POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes: 
+      - ./pg-data/:/var/lib/postgresql
+      - ./pgsql_structure.ddl:/docker-entrypoint-initdb.d/init.sql
+    ports: 
+      - "5432:5432"
+    #command: --init-file /docker-entrypoint-initdb.d/init.sql
     
   mysql:
     image: mysql
@@ -21,7 +21,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT}
     volumes:
       - ./mysql-data/:/var/lib/mysql
-      - ./make_structure.ddl:/data/application/init.sql
+      - ./mysql_structure.ddl:/data/application/init.sql
     ports:
       - "3306:3306"
     command: --init-file /data/application/init.sql
