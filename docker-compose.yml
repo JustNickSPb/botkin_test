@@ -7,9 +7,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
     volumes: 
       - ./pg-data/:/var/lib/postgresql
-      - ./pgsql_structure.ddl:/docker-entrypoint-initdb.d/init.sql
-    ports: 
-      - "5432:5432"
+    network_mode: "host"
     
   mysql:
     image: mysql
@@ -19,10 +17,19 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT}
     volumes:
       - ./mysql-data/:/var/lib/mysql
-      - ./mysql_structure.ddl:/data/application/init.sql
-    ports:
-      - "3306:3306"
+      - ./create_mysql_base.ddl:/data/application/init.sql
     command: --init-file /data/application/init.sql
+    network_mode: "host"
+
+  scripts:
+    build: ./py-script
+    depends_on: 
+      - mysql
+      - postgres
+    network_mode: "host"
+    environment: 
+      - DB_PASS=${DB_PASS}
+      - DB_ROOT=${DB_ROOT}
 
 volumes:
   pg-data:

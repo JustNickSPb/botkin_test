@@ -1,0 +1,2 @@
+SET GLOBAL connect_timeout = 10;
+CREATE DATABASE IF NOT EXISTS db;
