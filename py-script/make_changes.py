@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*- 
 
 import psycopg2
 import random
@@ -57,12 +58,16 @@ def generate_values():
     for i in range(1,21):
         good = random.choice(PSEUDO_RANDOM_GOODS)
         cur.execute(
-            f'INSERT INTO public.Costs (id, name, price) '
-            f'VALUES ({i}, \'{good}\', {round(random.uniform(0.01, 1000.00), 2)});'
+            'INSERT INTO public.Costs (id, name, price) '
+            'VALUES ({i}, \'{good}\', {price});'.format(
+                i=i, good=good, price=round(random.uniform(0.01, 1000.00), 2)
+            )
         )
         cur.execute(
-            f'INSERT INTO public.Products (id, name, status, quantity, priceid) '
-            f'VALUES({i}, \'{good}\', \'В наличии\', {random.randint(0, 100)}, {i});'
+            'INSERT INTO public.Products (id, name, status, quantity, priceid) '
+            'VALUES({i}, \'{good}\', \'В наличии\', {qty}, {i});'.format(
+                i=i, good=good, qty=random.randint(0, 100)
+            )
         )
     postgre.commit()
 
@@ -85,6 +90,7 @@ def move_data_from_postgre_to_my():
     my_cur.executemany('''INSERT INTO db.Products (id, name, status, quantity, priceId) 
         VALUES (%s, %s, %s, %s, %s);''', rows)
     mysql.commit()
+    print('Done')
 
 
 postgre = psycopg2.connect(

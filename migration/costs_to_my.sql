@@ -1,0 +1,2 @@
+LOAD DATA INFILE 'new_costs.csv' INTO TABLE db.Costs
+FIELDS TERMINATED BY ',';

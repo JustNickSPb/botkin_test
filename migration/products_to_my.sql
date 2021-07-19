@@ -1,0 +1,2 @@
+LOAD DATA INFILE 'products.csv' INTO TABLE db.Products 
+FIELDS TERMINATED BY ','

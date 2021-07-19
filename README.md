@@ -5,3 +5,8 @@
     create_tables() - создает в обеих базах данных описанные в ТЗ таблицы
     generate_values() - наполняет postgresql случайными данными
     move_data_from_postgre_to_my() - переносит данные из postgresql в mysql, умножая стоимость товаров в 10 раз
+
+Если выполнились пункты 1 и 2, можно запустить скрипт ./myscript.sh
+./my-script.sh create - создаст структуру данных в базах
+./my-script.sh autoinsert - заполнит данными первую бд PostgreSQL
+./my-script.sh migrate - перенсет данные с изменениями цены в 10 раз
