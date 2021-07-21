@@ -5,9 +5,6 @@ import psycopg2
 import random
 from mysql.connector import connect
 import os
-import time
-# Дикий костыль для того, чтобы контейнеры с базами успели подняться:
-time.sleep(9)
 
 PSEUDO_RANDOM_GOODS = [
     'эссенция', 'багор', 'санки', 'корешок', 'лама', 'грифон', 'манускрипт', 'вестник',
@@ -97,7 +94,7 @@ postgre = psycopg2.connect(
   database="postgres", 
   user="postgres", 
   password=os.environ.get('DB_PASS'),
-  host="0.0.0.0", # os.environ.get('POSTGRE_CONTAINER'), 
+  host="0.0.0.0",
   port="5432"
 )
 

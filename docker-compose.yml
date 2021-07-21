@@ -26,11 +26,11 @@ services:
     depends_on: 
       - mysql
       - postgres
+    restart: always
     network_mode: "host"
     environment: 
       - DB_PASS=${DB_PASS}
-      - DB_ROOT=${DB_ROOT}
-    
+      - DB_ROOT=${DB_ROOT}    
 
 volumes:
   pg-data:
