@@ -6,7 +6,7 @@ services:
     environment: 
       - POSTGRES_PASSWORD=${DB_PASS}
     volumes: 
-      - ./pg-data/:/var/lib/postgresql
+      - pg-data/:/var/lib/postgresql
     network_mode: "host"
     
   mysql:
@@ -16,7 +16,7 @@ services:
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ROOT_PASSWORD=${DB_ROOT}
     volumes:
-      - ./mysql-data/:/var/lib/mysql
+      - mysql-data/:/var/lib/mysql
       - ./create_mysql_base.ddl:/data/application/init.sql
     command: --init-file /data/application/init.sql --secure-file-priv=""
     network_mode: "host"
@@ -30,6 +30,7 @@ services:
     environment: 
       - DB_PASS=${DB_PASS}
       - DB_ROOT=${DB_ROOT}
+    
 
 volumes:
   pg-data:

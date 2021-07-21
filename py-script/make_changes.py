@@ -7,7 +7,7 @@ from mysql.connector import connect
 import os
 import time
 # Дикий костыль для того, чтобы контейнеры с базами успели подняться:
-time.sleep(6)
+time.sleep(9)
 
 PSEUDO_RANDOM_GOODS = [
     'эссенция', 'багор', 'санки', 'корешок', 'лама', 'грифон', 'манускрипт', 'вестник',
